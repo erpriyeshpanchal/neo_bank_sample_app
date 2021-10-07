@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply from: '../sdk_config.gradle'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
+    buildToolsVersion project.BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "com.digiapp.sampleapp"
+        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(project.APP_VERSION_CODE)
+        versionName project.APP_VERSION_NAME
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY", "\"$API_KEY\""
+        buildConfigField "String", "NUM_HASHED_BYTES", "\"$NUM_HASHED_BYTES\""
+        buildConfigField "String", "NUM_BASE64_CHAR", "\"$NUM_BASE64_CHAR\""
+        buildConfigField "String", "HASH_TYPE", "\"$HASH_TYPE\""
+        setProperty("archivesBaseName", "Samuday_v$versionName")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore/samudayapp.jks")
+            storePassword "samudayapp"
+            keyAlias "samudayapp"
+            keyPassword "samudayapp"
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    ndkVersion "22.1.7171670"
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//    implementation "in.novopay.sbagency:app:1.0.21"
+    implementation 'in.digiapp.waas:app:1.0.71'
+
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+}
