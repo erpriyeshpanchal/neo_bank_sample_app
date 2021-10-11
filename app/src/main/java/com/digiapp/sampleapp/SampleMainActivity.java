@@ -39,11 +39,11 @@ public class SampleMainActivity extends AppCompatActivity {
                         R.layout.activity_main_sample
                 );
 
-        binding.btnOpenSdSdk.setOnClickListener(view -> startSuryodaySdk(binding.etMobile.getText().toString()));
+        binding.btnOpenNbSdk.setOnClickListener(view -> startNeoBankSdk(binding.etMobile.getText().toString()));
     }
 
-    private void startSuryodaySdk(String mobileNum) {
-        registerSuryodaySdk();
+    private void startNeoBankSdk(String mobileNum) {
+        registerNeoBankSdk();
 
         StartCustomerAppsSdk.launch(
                 this,
@@ -52,17 +52,17 @@ public class SampleMainActivity extends AppCompatActivity {
                 StartCustomerAppsSdk.WaasEnvironment.QA,
                 getAppSignatures().get(0),
                 "sdk");
-        onBackPressed();
+        //onBackPressed();
     }
 
-    private void registerSuryodaySdk() {
+    private void registerNeoBankSdk() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSuryodaySdkStatusUpdate(CustomerAppsSdkStatus neobankSdkStatus) {
+    public void onCustomerAppSdkStatus(CustomerAppsSdkStatus neobankSdkStatus) {
         Toast.makeText(this, neobankSdkStatus.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
