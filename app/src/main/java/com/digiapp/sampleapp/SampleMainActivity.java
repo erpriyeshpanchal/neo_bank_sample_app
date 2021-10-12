@@ -30,7 +30,6 @@ import in.digiapp.waas.StartCustomerAppsSdk;
 public class SampleMainActivity extends AppCompatActivity {
 
     private String API_KEY = "4051c9d9d616Jvuy0B3Y817t4ow";
-    private String CLIENT_CODE = "sdk";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +50,7 @@ public class SampleMainActivity extends AppCompatActivity {
                 mobileNum,
                 API_KEY,
                 StartCustomerAppsSdk.WaasEnvironment.QA,
-                getAppSignatures().get(0),
-                CLIENT_CODE);
+                getAppSignatures().get(0));
     }
 
     private void registerCustomerAppSdk() {
