@@ -17,7 +17,7 @@ android {
         buildConfigField "String", "NUM_HASHED_BYTES", "\"$NUM_HASHED_BYTES\""
         buildConfigField "String", "NUM_BASE64_CHAR", "\"$NUM_BASE64_CHAR\""
         buildConfigField "String", "HASH_TYPE", "\"$HASH_TYPE\""
-        setProperty("archivesBaseName", "Samuday_v$versionName")
+        setProperty("archivesBaseName", "CustomerAppSdk_v$versionName")
     }
 
     buildTypes {
@@ -29,10 +29,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore/samudayapp.jks")
-            storePassword "samudayapp"
-            keyAlias "samudayapp"
-            keyPassword "samudayapp"
+            storeFile file("keystore/customersdksample.jks")
+            storePassword "novopay#25"
+            keyAlias "customersdksample"
+            keyPassword "novopay#25"
         }
     }
     dataBinding {

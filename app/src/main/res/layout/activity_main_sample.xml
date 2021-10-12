@@ -28,8 +28,7 @@
             android:layout_marginTop="16dp"
             android:hint="Mobile number"
             android:inputType="phone"
-            android:backgroundTint="@color/black"
-            android:text="9731560056" />
+            android:backgroundTint="@color/black" />
 
         <Button
             android:id="@+id/btnOpenNbSdk"

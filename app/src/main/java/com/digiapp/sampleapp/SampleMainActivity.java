@@ -29,6 +29,9 @@ import in.digiapp.waas.StartCustomerAppsSdk;
 
 public class SampleMainActivity extends AppCompatActivity {
 
+    private String API_KEY = "4051c9d9d616Jvuy0B3Y817t4ow";
+    private String CLIENT_CODE = "sdk";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,27 +46,24 @@ public class SampleMainActivity extends AppCompatActivity {
     }
 
     private void startNeoBankSdk(String mobileNum) {
-        registerNeoBankSdk();
-
-        StartCustomerAppsSdk.launch(
-                this,
+        registerCustomerAppSdk();
+        StartCustomerAppsSdk.launch(this,
                 mobileNum,
-                "4051c9d9d616Jvuy0B3Y817t4ow",
+                API_KEY,
                 StartCustomerAppsSdk.WaasEnvironment.QA,
                 getAppSignatures().get(0),
-                "sdk");
-        //onBackPressed();
+                CLIENT_CODE);
     }
 
-    private void registerNeoBankSdk() {
+    private void registerCustomerAppSdk() {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onCustomerAppSdkStatus(CustomerAppsSdkStatus neobankSdkStatus) {
-        Toast.makeText(this, neobankSdkStatus.getMessage(), Toast.LENGTH_SHORT).show();
+    public void onCustomerAppsSdkStatusUpdate(CustomerAppsSdkStatus customerAppsSdkStatus) {
+        Toast.makeText(this, customerAppsSdkStatus.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
